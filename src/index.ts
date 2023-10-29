@@ -2,6 +2,7 @@ import { Client, IntentsBitField } from "discord.js"
 import { env } from "./env"
 import { commands } from "./handlers/commands"
 import { events } from "./handlers/events"
+import { reloadCommands } from "./reloadCommands"
 
 const client = new Client({
   intents: [
@@ -20,5 +21,7 @@ client.on("interactionCreate", interaction => {
     if (command) return void command.executer(interaction)
   }
 })
+
+reloadCommands()
 
 client.login(env.DISCORD_CLIENT_TOKEN)
